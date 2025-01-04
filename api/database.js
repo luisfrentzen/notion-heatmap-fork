@@ -47,8 +47,10 @@ const processData = (data) => {
         console.log(item)
         if (item.properties.Date && item.properties.Progress) {
             if (item.properties.Progress.number !== null && item.properties.Progress.number > 0) {
-                const dateObject = new Date(item.properties.Date.created_time);
+                const dateObject = item.properties.Date.date;
+                console.log(dateObject)
                 dateObject.setDate(dateObject.getDate() + 1); // Add one day to the date
+                console.log(dateObject)
                 const date = dateObject.toISOString().split('T')[0]; // Format back to YYYY-MM-DD
                 const progress = Math.round(item.properties.Progress.number * 100); // Convert from 0-1 to 0-100
                 progressMap.set(date, progress);
