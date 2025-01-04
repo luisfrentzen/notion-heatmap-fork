@@ -6,6 +6,8 @@ export default async (req, res) => {
     const token = process.env.ENV_NOTION_TOKEN;
     const databaseId = process.env.ENV_DATABASE_ID;
 
+    console.log(token, databaseId)
+
     try {
         const response = await fetch(`https://api.notion.com/v1/databases/${databaseId}/query`, {
             method: 'POST',
