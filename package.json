@@ -12,6 +12,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1"
+    "@notionhq/client": "^2.2.15"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
