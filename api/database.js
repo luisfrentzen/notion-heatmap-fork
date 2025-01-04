@@ -44,6 +44,7 @@ const processData = (data) => {
     const progressMap = new Map();
 
     data.forEach(item => {
+        console.log(item)
         if (item.properties.Date && item.properties.Progress) {
             if (item.properties.Progress.formula.number !== null && item.properties.Progress.formula.number > 0) {
                 const dateObject = new Date(item.properties.Date.created_time);
