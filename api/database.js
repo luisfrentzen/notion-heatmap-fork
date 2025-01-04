@@ -1,34 +1,43 @@
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
+import { Client } from "@notionhq/client";
+
 dotenv.config();
 
 export default async (req, res) => {
     const token = process.env.ENV_NOTION_TOKEN;
     const databaseId = process.env.ENV_DATABASE_ID;
 
-    console.log(token, databaseId)
+    const notion = new Client({ auth: token })
 
-    try {
-        const response = await fetch(`https://api.notion.com/v1/databases/${databaseId}/query`, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer "${token}"`,
-                'Notion-Version': '2021-05-13',
-                'Content-Type': 'application/json'
-            },
-        });
-        const data = await response.json();
+    const data = await notion.databases.query({
+        database_id: databaseId
+    })
 
-        if (!response.ok) {
-            throw new Error(`Notion API error: ${response.status} ${JSON.stringify(data)}`);
-        }
+    const processedData = processData(data.results);
+    res.json(processedData);
+    
+    // try {
+    //     const response = await fetch(`https://api.notion.com/v1/databases/${databaseId}/query`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Authorization': `Bearer "${token}"`,
+    //             'Notion-Version': '2021-05-13',
+    //             'Content-Type': 'application/json'
+    //         },
+    //     });
+    //     const data = await response.json();
 
-        const processedData = processData(data.results);
-        res.json(processedData);
-    } catch (error) {
-        console.error("Error processing request:", error);
-        res.status(500).json({ error: error.message });
-    }
+    //     if (!response.ok) {
+    //         throw new Error(`Notion API error: ${response.status} ${JSON.stringify(data)}`);
+    //     }
+
+    //     const processedData = processData(data.results);
+    //     res.json(processedData);
+    // } catch (error) {
+    //     console.error("Error processing request:", error);
+    //     res.status(500).json({ error: error.message });
+    // }
 };
 
 const processData = (data) => {
