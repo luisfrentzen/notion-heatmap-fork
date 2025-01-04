@@ -10,7 +10,7 @@ export default async (req, res) => {
         const response = await fetch(`https://api.notion.com/v1/databases/${databaseId}/query`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer "${token}"`,
                 'Notion-Version': '2021-05-13',
                 'Content-Type': 'application/json'
             },
