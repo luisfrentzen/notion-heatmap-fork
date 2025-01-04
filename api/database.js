@@ -47,7 +47,7 @@ const processData = (data) => {
         console.log(item)
         if (item.properties.Date && item.properties.Progress) {
             if (item.properties.Progress.number !== null && item.properties.Progress.number > 0) {
-                const dateObject = item.properties.Date.date;
+                const dateObject = new Date(item.properties.Date.date.start);
                 console.log(dateObject)
                 dateObject.setDate(dateObject.getDate() + 1); // Add one day to the date
                 console.log(dateObject)
