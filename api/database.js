@@ -45,6 +45,15 @@ const processData = (data, qdata) => {
                 progressMap.set(date, 20);
             }
             progressMap.set(date, progressMap.get(date) + 20);
+
+            console.log(item.properties)
+            
+            const dateObject = new Date(item.properties.ResolveDate.date.start);
+            const date = dateObject.toISOString().split('T')[0]; // Format back to YYYY-MM-DD
+            if (!progressMap.has(date)) {
+                progressMap.set(date, 20);
+            }
+            progressMap.set(date, progressMap.get(date) + 20);
         }
     });
 
