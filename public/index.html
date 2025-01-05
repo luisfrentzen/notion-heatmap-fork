@@ -7,10 +7,35 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #month-legends {
+            fill: #999;
+            font-size: 10px;
+            width: 100%
+            display: flex;
+            flex-direction: column;
         }
     </style>
 </head>
 <body>
+    <div id="month-legends">
+        <div>Jan</div>
+        <div>Feb</div>
+        <div>Mar</div>
+        <div>Apr</div>
+        <div>May</div>
+        <div>Jun</div>
+        <div>Jul</div>
+        <div>Aug</div>
+        <div>Sep</div>
+        <div>Oct</div>
+        <div>Nov</div>
+        <div>Dec</div>
+    </div>
     <div id="cal-heatmap"></div>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     
@@ -27,7 +52,8 @@
                 subDomain: "day",
                 data: baseUrl + "/api/database", // 更新为指向无服务器函数的URL
                 start: new Date(new Date().getFullYear(), 0, 1),
-                cellSize: 10,
+                cellSize: 12,
+                cellRadius: 2,
                 range: 1,
                 tooltip: true,
                 nextSelector: "#next",
