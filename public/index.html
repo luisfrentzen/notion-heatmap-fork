@@ -23,12 +23,12 @@
             const cal = new CalHeatMap();
             cal.init({
                 itemSelector: "#cal-heatmap",
-                domain: "month",
+                domain: "year",
                 subDomain: "day",
                 data: baseUrl + "/api/database", // 更新为指向无服务器函数的URL
-                start: new Date(new Date().getFullYear(), new Date().getMonth() - 5),
+                start: new Date(new Date().getFullYear(), 0, 1),
                 cellSize: 10,
-                range: 6,
+                range: 1,
                 tooltip: true,
                 nextSelector: "#next",
                 previousSelector: "#previous",
@@ -41,7 +41,7 @@
                 },
                 subDomainTitleFormat: {
                     empty: "{date}", // Display only the date for empty data cells
-                    filled: "{count}% on {date}" // Custom format to show percentage
+                    filled: "{date}" // Custom format to show percentage
                 },
                 afterLoadData: function(data) {
                     if (!data) {
