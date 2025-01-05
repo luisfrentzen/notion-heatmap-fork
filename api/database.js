@@ -7,7 +7,7 @@ dotenv.config();
 export default async (req, res) => {
     const token = process.env.ENV_NOTION_TOKEN;
     const databaseId = process.env.ENV_DATABASE_ID;
-    const QdatabaseId = process.env.ENV_Q_DATABASE_ID;
+    const qDatabaseId = process.env.ENV_Q_DATABASE_ID;
 
     const notion = new Client({ auth: token })
 
@@ -16,7 +16,7 @@ export default async (req, res) => {
     })
 
     const qdata = await notion.databases.query({
-        database_id: QdatabaseId
+        database_id: qDatabaseId
     })
 
     const processedData = processData(data.results, qdata.results);
