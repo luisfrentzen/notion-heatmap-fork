@@ -38,16 +38,18 @@ const processData = (data, qdata) => {
     });
 
     qdata.forEach(item => {
-        if (item.properties.Date) {
+        if (item.properties.Date.date) {
             const dateObject = new Date(item.properties.Date.date.start);
             const date = dateObject.toISOString().split('T')[0]; // Format back to YYYY-MM-DD
             if (!progressMap.has(date)) {
                 progressMap.set(date, 20);
             }
             progressMap.set(date, progressMap.get(date) + 20);
+        }
 
-            dateObject = new Date(item.properties["Resolve Date"].date.start);
-            date = dateObject.toISOString().split('T')[0]; // Format back to YYYY-MM-DD
+        if (item.properties["Resolve Date"].date {
+            const dateObject = new Date(item.properties["Resolve Date"].date.start);
+            const date = dateObject.toISOString().split('T')[0]; // Format back to YYYY-MM-DD
             if (!progressMap.has(date)) {
                 progressMap.set(date, 20);
             }
