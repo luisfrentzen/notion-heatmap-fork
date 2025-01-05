@@ -12,6 +12,8 @@
 </head>
 <body>
     <div id="cal-heatmap"></div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/d3@3"></script>
     <script src="https://cdn.jsdelivr.net/npm/cal-heatmap/cal-heatmap.min.js"></script>
     <script>
@@ -31,14 +33,12 @@
                 nextSelector: "#next",
                 previousSelector: "#previous",
                 considerMissingDataAsZero: false,
-                legend: [80], // Redefining the legend thresholds
                 legendColors: {
-                    min: "#2b2b2b",
+                    min: "#dae289",
                     base: "#2b2b2b",
-                    colors: ["#dae289","#78c353"], // Adjusted color steps for clarity
+                    max: "#78c353", // Adjusted color steps for clarity
                     empty: "#2b2b2b"
                 },
-                theme: "dark",
                 subDomainTitleFormat: {
                     empty: "{date}", // Display only the date for empty data cells
                     filled: "{count}% on {date}" // Custom format to show percentage
