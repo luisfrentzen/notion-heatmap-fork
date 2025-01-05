@@ -46,9 +46,7 @@ const processData = (data, qdata) => {
             }
             progressMap.set(date, progressMap.get(date) + 20);
 
-            console.log(item.properties)
-            
-            dateObject = new Date(item.properties.ResolveDate.date.start);
+            dateObject = new Date(item.properties["Resolve Date"].date.start);
             date = dateObject.toISOString().split('T')[0]; // Format back to YYYY-MM-DD
             if (!progressMap.has(date)) {
                 progressMap.set(date, 20);
